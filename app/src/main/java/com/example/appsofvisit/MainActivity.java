@@ -60,9 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
                 String jsonInputString = "{ \"usuario\": \"" + "admin" + "\", \"contrasena\": \"" + "$2b$10$r7HgU9cu6TBLb4JTk9EG1udmZpOwZmnTg1B7JQzB.G69C1tW4J8nO" + "\" }";
 
+
+                try (OutputStream os = connection.getOutputStream()) {
+                    byte[] input = jsonInputString.getBytes("utf-8");
+                    os.write(input, 0, input.length);
+                }
+
+
                 int responseCode = connection.getResponseCode();
                 if (responseCode == HttpURLConnection.HTTP_OK) {
-
                     runOnUiThread(() -> {
                         Toast.makeText(this, "leido"+responseCode, Toast.LENGTH_SHORT).show();
                     });
