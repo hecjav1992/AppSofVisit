@@ -14,6 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
@@ -21,8 +23,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-    private EditText edtuser;
-    private EditText edtcontrasena;
+    private  TextInputLayout edtuser;
+    private TextInputLayout edtcontrasena;
     private Button btnLogin;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -35,16 +37,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        this.edtuser=(EditText)findViewById(R.id.edtUser);
-        this.edtcontrasena=(EditText) findViewById(R.id.edtcontrasena);
+        this.edtuser = findViewById(R.id.edtUser);
+        this.edtcontrasena=findViewById(R.id.edtcontrasena);
         this.btnLogin=(Button) findViewById(R.id.btn);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IniciarSeccion(edtuser.getText().toString(),edtcontrasena.getText().toString());
+                IniciarSeccion(edtuser.getEditText().getText().toString().trim(),edtcontrasena.getEditText().getText().toString().trim());
             }
         });
-
     }
 
     public void IniciarSeccion(String usuario,String contrasena){
